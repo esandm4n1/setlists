@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>B:最新曲版 / 90分レッスン セットリスト</title>
+<title>90分レッスン セットリスト集</title>
 <style>
   :root {
     --ink: #1a1a1a;
@@ -12,15 +12,7 @@
     --line: #e0dcd2;
     --bg: #faf8f3;
     --card: #ffffff;
-    --accent: #2c5f7c;
-    --slow: #6b7d8c;
-    --cute: #d99bb8;
-    --fun: #e8a44c;
-    --heavy1: #8b3a3a;
-    --calm: #9eb09a;
-    --sexy: #6b4e8e;
-    --heavy2: #c4593b;
-    --cool: #4a6b7c;
+    --accent: #8B2E2E;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -28,603 +20,241 @@
     background: var(--bg);
     color: var(--ink);
     line-height: 1.6;
-    padding: 16px;
+    padding: 20px 16px 40px;
     max-width: 720px;
     margin: 0 auto;
     font-size: 15px;
   }
   header {
-    padding: 20px 4px 24px;
+    text-align: center;
+    padding: 24px 4px 32px;
     border-bottom: 2px solid var(--accent);
-    margin-bottom: 24px;
+    margin-bottom: 32px;
   }
   h1 {
-    font-size: 22px;
+    font-size: 26px;
     font-weight: 700;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     letter-spacing: 0.02em;
   }
   .sub {
     color: var(--sub);
     font-size: 13px;
-    margin-bottom: 12px;
   }
   .intro {
     background: var(--card);
     border: 1px solid var(--line);
     border-radius: 8px;
-    padding: 14px 16px;
+    padding: 16px 18px;
     font-size: 13px;
     color: var(--sub);
-    margin-top: 12px;
+    margin-bottom: 32px;
+    line-height: 1.75;
   }
   .intro strong { color: var(--ink); }
-  .section {
-    margin-bottom: 28px;
-    background: var(--card);
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid var(--line);
+
+  .cards {
+    display: grid;
+    gap: 16px;
   }
-  .section-header {
-    padding: 14px 18px;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  .section-header .num {
-    font-size: 12px;
-    opacity: 0.85;
-    margin-right: 8px;
-    font-weight: 700;
-  }
-  .section-header .title {
-    font-size: 18px;
-    font-weight: 700;
-  }
-  .section-header .meta {
-    font-size: 12px;
-    opacity: 0.9;
-    font-weight: 500;
-  }
-  .s-slow .section-header { background: var(--slow); }
-  .s-cute .section-header { background: var(--cute); }
-  .s-fun .section-header { background: var(--fun); }
-  .s-heavy1 .section-header { background: var(--heavy1); }
-  .s-calm .section-header { background: var(--calm); }
-  .s-sexy .section-header { background: var(--sexy); }
-  .s-heavy2 .section-header { background: var(--heavy2); }
-  .s-cool .section-header { background: var(--cool); }
-  .approach {
-    padding: 12px 18px;
-    background: #f7f4ed;
-    font-size: 12.5px;
-    color: var(--sub);
-    border-bottom: 1px solid var(--line);
-    line-height: 1.65;
-  }
-  .approach .label {
-    font-weight: 700;
-    color: var(--accent);
-    font-size: 11px;
-    letter-spacing: 0.1em;
+  .card {
     display: block;
-    margin-bottom: 4px;
+    background: var(--card);
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--line);
+    transition: transform 0.15s, box-shadow 0.15s;
   }
-  ul.songs {
-    list-style: none;
-    padding: 6px 0;
+  .card:hover, .card:active {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
   }
-  ul.songs li {
-    padding: 12px 18px;
-    border-bottom: 1px solid #f0ece3;
+  .card-header {
+    padding: 18px 22px;
+    color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 12px;
   }
-  ul.songs li:last-child { border-bottom: none; }
-  .song-info { flex: 1; min-width: 0; }
-  .song-title {
+  .card-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    opacity: 0.9;
     font-weight: 700;
-    font-size: 14px;
-    color: var(--ink);
-    margin-bottom: 2px;
-    line-height: 1.4;
+    margin-bottom: 4px;
   }
-  .song-artist {
-    font-size: 12px;
+  .card-title {
+    font-size: 22px;
+    font-weight: 700;
+  }
+  .card-arrow {
+    font-size: 24px;
+    opacity: 0.85;
+  }
+  .card-body {
+    padding: 16px 22px 20px;
+  }
+  .card-desc {
+    font-size: 13px;
     color: var(--sub);
-    margin-bottom: 2px;
+    margin-bottom: 12px;
+    line-height: 1.7;
   }
-  .song-meta { font-size: 11px; color: var(--muted); }
-  .bpm {
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .tag {
     display: inline-block;
-    background: var(--accent);
-    color: white;
-    padding: 2px 8px;
+    background: #f0ece3;
+    color: var(--sub);
+    padding: 4px 10px;
     border-radius: 4px;
     font-size: 11px;
-    font-weight: 700;
-    margin-right: 6px;
-    letter-spacing: 0.03em;
+    font-weight: 500;
   }
-  .year { color: var(--muted); font-size: 11px; }
-  .yt-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: #ff0000;
+  .tag.hot {
+    background: var(--accent);
     color: white;
-    text-decoration: none;
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 600;
-    white-space: nowrap;
-    flex-shrink: 0;
-    transition: opacity 0.15s;
   }
-  .yt-link:hover, .yt-link:active { opacity: 0.85; }
-  .yt-link::before { content: "▶"; margin-right: 4px; font-size: 10px; }
+
+  /* カードごとの色 */
+  .card-a .card-header { background: linear-gradient(135deg, #8B2E2E, #a04545); }
+  .card-b .card-header { background: linear-gradient(135deg, #2c5f7c, #4a7d99); }
+  .card-c .card-header { background: linear-gradient(135deg, #1a1a1a, #4a4a4a); }
+  .card-d .card-header { background: linear-gradient(135deg, #6b4e8e, #c4593b); }
+
   footer {
-    margin-top: 32px;
+    margin-top: 40px;
     padding: 20px 4px;
     text-align: center;
     font-size: 12px;
     color: var(--muted);
     border-top: 1px solid var(--line);
   }
-  footer .note { margin-top: 8px; font-size: 11px; line-height: 1.7; }
+
   @media (max-width: 480px) {
-    body { padding: 12px; font-size: 14px; }
-    h1 { font-size: 20px; }
-    .section-header { padding: 12px 14px; }
-    .approach { padding: 10px 14px; font-size: 12px; }
-    ul.songs li { padding: 10px 14px; }
-    .yt-link { padding: 7px 10px; font-size: 11px; }
+    body { padding: 16px 12px 32px; }
+    h1 { font-size: 22px; }
+    .card-title { font-size: 19px; }
+    .card-header { padding: 16px 18px; }
+    .card-body { padding: 14px 18px 18px; }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <div style="margin-bottom: 12px;"><a href="index.html" style="color: #2c5f7c; text-decoration: none; font-size: 13px;">← セットリスト集に戻る</a></div>
-  <div style="font-size: 11px; letter-spacing: 0.15em; color: #2c5f7c; font-weight: 700; margin-bottom: 4px;">VERSION B</div>
-  <h1>最新曲版</h1>
-  <div class="sub">2022〜2025のヒット中心 / トレンド感重視</div>
-  <div class="intro">
-    <strong>構成の流れ:</strong> ゆっくり → かわいさ → たのしさ → はげしさ① → おちつき → セクシー → はげしさ② → クールダウン<br>
-    <strong>このバージョンの特徴:</strong> 直近2〜3年のヒット曲を中心に構成。TikTok・ストリーミング上位曲多めで、若い世代や流行に敏感な層に刺さる。
-  </div>
+  <h1>90分レッスン セットリスト集</h1>
+  <div class="sub">ステップ → エアロ → ステップ → ズンバ / 4種類のバージョン</div>
 </header>
 
-<!-- ① ゆっくり -->
-<section class="section s-slow">
-  <div class="section-header">
-    <div><span class="num">01</span><span class="title">ゆっくり / ウォームアップ</span></div>
-    <div class="meta">10分 ・ BPM 100-118</div>
-  </div>
-  <div class="approach">
-    <span class="label">音楽的アプローチ</span>
-    最新ヒットの中でも<b>グルーヴ感のあるミッドテンポ</b>で世界観を作る。R&B寄りの新作で、洗練された雰囲気から始める。
-  </div>
-  <ul class="songs">
-    <li>
-      <div class="song-info">
-        <div class="song-title">Espresso</div>
-        <div class="song-artist">Sabrina Carpenter</div>
-        <div class="song-meta"><span class="bpm">104</span><span class="year">2024</span></div>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Sabrina+Carpenter+Espresso+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">Lavender Haze</div>
-        <div class="song-artist">Taylor Swift</div>
-        <div class="song-meta"><span class="bpm">96</span><span class="year">2022</span></div>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Taylor+Swift+Lavender+Haze+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">Made For Me</div>
-        <div class="song-artist">Muni Long</div>
-        <div class="song-meta"><span class="bpm">110</span><span class="year">2023</span></div>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Muni+Long+Made+For+Me+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">Timeless</div>
-        <div class="song-artist">The Weeknd & Playboi Carti</div>
-        <div class="song-meta"><span class="bpm">120</span><span class="year">2024</span></div>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Weeknd+Playboi+Carti+Timeless+official" target="_blank">YouTube</a>
-    </li>
-  </ul>
-</section>
+<div class="intro">
+  <strong>使い方:</strong> その日の客層・雰囲気・気分で4種類のセットリストから選んでください。<br>
+  各バージョンとも8段階構成(ゆっくり → かわいさ → たのしさ → はげしさ① → おちつき → セクシー → はげしさ② → クールダウン)で組まれていて、曲ごとにBPM・年・YouTubeリンク付き。<br>
+  <strong>組み合わせて使うのもアリ</strong>:Aで王道、Cではげしさ①だけロックに差し替え、など。
+</div>
 
-<!-- ② かわいさ -->
-<section class="section s-cute">
-  <div class="section-header">
-    <div><span class="num">02</span><span class="title">かわいさ</span></div>
-    <div class="meta">12分 ・ BPM 110-135</div>
-  </div>
-  <div class="approach">
-    <span class="label">音楽的アプローチ</span>
-    最新のポップヒットでサビ爆発系を中心に。Sabrina CarpenterやChappell Roanなど<b>2024年バズ系</b>を投入。サビが分かりやすい曲が多くて振付乗せやすい。
-  </div>
-  <ul class="songs">
-    <li>
-      <div class="song-info">
-        <div class="song-title">Please Please Please</div>
-        <div class="song-artist">Sabrina Carpenter</div>
-        <div class="song-meta"><span class="bpm">112</span><span class="year">2024</span></div>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Sabrina+Carpenter+Please+Please+Please+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">Pink Pony Club</div>
-        <div class="song-artist">Chappell Roan</div>
-        <div class="song-meta"><span class="bpm">122</span><span class="year">2020</span></div>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Chappell+Roan+Pink+Pony+Club+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">Greedy</div>
-        <div class="song-artist">Tate McRae</div>
-        <div class="song-meta"><span class="bpm">112</span><span class="year">2023</span></div>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Tate+McRae+Greedy+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">Flowers</div>
-        <div class="song-artist">Miley Cyrus</div>
-        <div class="song-meta"><span class="bpm">118</span><span class="year">2023</span></div>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Miley+Cyrus+Flowers+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">Cruel Summer</div>
-        <div class="song-artist">Taylor Swift</div>
-        <div class="song-meta"><span class="bpm">170/85</span><span class="year">2019/2023再ブレイク</span></div>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Taylor+Swift+Cruel+Summer+official" target="_blank">YouTube</a>
-    </li>
-  </ul>
-</section>
+<div class="cards">
 
-<!-- ③ たのしさ -->
-<section class="section s-fun">
-  <div class="section-header">
-    <div><span class="num">03</span><span class="title">たのしさ</span></div>
-    <div class="meta">13分 ・ BPM 110-130</div>
-  </div>
-  <div class="approach">
-    <span class="label">音楽的アプローチ</span>
-    <b>ダンスポップ・ハウス寄り</b>の最新曲でテンション上げる。Charli XCXのBratシーズン、Beyoncéのカントリーポップ、Doja Catのバズ曲などジャンルミックス。
-  </div>
-  <ul class="songs">
-    <li>
-      <div class="song-info">
-        <div class="song-title">Texas Hold 'Em</div>
-        <div class="song-artist">Beyoncé</div>
-        <div class="song-meta"><span class="bpm">110</span><span class="year">2024</span></div>
+  <a class="card card-a" href="setlist_a_classic.html">
+    <div class="card-header">
+      <div>
+        <div class="card-label">VERSION A</div>
+        <div class="card-title">王道版</div>
       </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Beyonce+Texas+Hold+Em+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">Paint The Town Red</div>
-        <div class="song-artist">Doja Cat</div>
-        <div class="song-meta"><span class="bpm">100/200</span><span class="year">2023</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="card-body">
+      <div class="card-desc">
+        30〜40代に確実に刺さる現代ヒット+00年代懐メロ。「これさえあれば外さない」安定の鉄板版。
       </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Doja+Cat+Paint+The+Town+Red+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">Vampire</div>
-        <div class="song-artist">Olivia Rodrigo</div>
-        <div class="song-meta"><span class="bpm">138</span><span class="year">2023</span></div>
+      <div class="tags">
+        <span class="tag hot">鉄板</span>
+        <span class="tag">Bruno Mars</span>
+        <span class="tag">Lady Gaga</span>
+        <span class="tag">Beyoncé</span>
+        <span class="tag">Shakira</span>
       </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Olivia+Rodrigo+Vampire+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">As It Was</div>
-        <div class="song-artist">Harry Styles</div>
-        <div class="song-meta"><span class="bpm">174/87</span><span class="year">2022</span></div>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Harry+Styles+As+It+Was+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">About Damn Time</div>
-        <div class="song-artist">Lizzo</div>
-        <div class="song-meta"><span class="bpm">109</span><span class="year">2022</span></div>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Lizzo+About+Damn+Time+official" target="_blank">YouTube</a>
-    </li>
-  </ul>
-</section>
+    </div>
+  </a>
 
-<!-- ④ はげしさ① -->
-<section class="section s-heavy1">
-  <div class="section-header">
-    <div><span class="num">04</span><span class="title">はげしさ ① / エアロピーク</span></div>
-    <div class="meta">15分 ・ BPM 120-180 / 第一の山 🔥</div>
-  </div>
-  <div class="approach">
-    <span class="label">音楽的アプローチ</span>
-    最新のEDM・ハードポップで攻める。Charli XCXのBrat、Tate McRaeのセクシーパワフル系、SZA等。<b>つなぎはメリハリ重視</b>、明確にギアを上げる。
-  </div>
-  <ul class="songs">
-    <li>
-      <div class="song-info">
-        <div class="song-title">360</div>
-        <div class="song-artist">Charli XCX</div>
-        <div class="song-meta"><span class="bpm">130</span><span class="year">2024</span></div>
+  <a class="card card-b" href="setlist_b_latest.html">
+    <div class="card-header">
+      <div>
+        <div class="card-label">VERSION B</div>
+        <div class="card-title">美のイベント特化版</div>
       </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Charli+XCX+360+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">Von Dutch</div>
-        <div class="song-artist">Charli XCX</div>
-        <div class="song-meta"><span class="bpm">152</span><span class="year">2024</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="card-body">
+      <div class="card-desc">
+        2025〜2026最新、K-POP×洋楽ミックス。ヘアセット・メイク等の美にまつわるイベントで「映える」「ステージ感」「トレンド共有」を最大化する全振り構成。
       </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Charli+XCX+Von+Dutch+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">Houdini</div>
-        <div class="song-artist">Dua Lipa</div>
-        <div class="song-meta"><span class="bpm">140</span><span class="year">2023</span></div>
+      <div class="tags">
+        <span class="tag hot">最新</span>
+        <span class="tag">BLACKPINK</span>
+        <span class="tag">aespa</span>
+        <span class="tag">ROSÉ & Bruno Mars</span>
+        <span class="tag">Sabrina Carpenter</span>
+        <span class="tag">Taylor Swift</span>
       </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Dua+Lipa+Houdini+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">Anxiety</div>
-        <div class="song-artist">Doechii</div>
-        <div class="song-meta"><span class="bpm">140</span><span class="year">2025</span></div>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Doechii+Anxiety+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">Padam Padam</div>
-        <div class="song-artist">Kylie Minogue</div>
-        <div class="song-meta"><span class="bpm">125</span><span class="year">2023</span></div>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Kylie+Minogue+Padam+Padam+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">Saoko</div>
-        <div class="song-artist">Rosalía</div>
-        <div class="song-meta"><span class="bpm">128</span><span class="year">2022</span></div>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Rosalia+Saoko+official" target="_blank">YouTube</a>
-    </li>
-  </ul>
-</section>
+    </div>
+  </a>
 
-<!-- ⑤ おちつき -->
-<section class="section s-calm">
-  <div class="section-header">
-    <div><span class="num">05</span><span class="title">おちつき / 水分&リセット</span></div>
-    <div class="meta">8分 ・ BPM 95-110</div>
-  </div>
-  <div class="approach">
-    <span class="label">音楽的アプローチ</span>
-    第一の山のあと、<b>BPMをスムースに落とす</b>。最新のメロウR&Bやアコースティック寄りで整える時間。
-  </div>
-  <ul class="songs">
-    <li>
-      <div class="song-info">
-        <div class="song-title">Snooze</div>
-        <div class="song-artist">SZA</div>
-        <div class="song-meta"><span class="bpm">95</span><span class="year">2022</span></div>
+  <a class="card card-c" href="setlist_c_rock.html">
+    <div class="card-header">
+      <div>
+        <div class="card-label">VERSION C</div>
+        <div class="card-title">ロック・ヘヴィ刺し版</div>
       </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=SZA+Snooze+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">Lose Control</div>
-        <div class="song-artist">Teddy Swims</div>
-        <div class="song-meta"><span class="bpm">96</span><span class="year">2023</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="card-body">
+      <div class="card-desc">
+        はげしさ①と②にロック・メタル・パンクを集中投入。「無心で動くトランス感」を作る攻めの構成。リピーター獲得用。
       </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Teddy+Swims+Lose+Control+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">Water</div>
-        <div class="song-artist">Tyla</div>
-        <div class="song-meta"><span class="bpm">115</span><span class="year">2023</span></div>
+      <div class="tags">
+        <span class="tag hot">攻め</span>
+        <span class="tag">Linkin Park</span>
+        <span class="tag">Foo Fighters</span>
+        <span class="tag">Rage Against the Machine</span>
+        <span class="tag">Green Day</span>
       </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Tyla+Water+official" target="_blank">YouTube</a>
-    </li>
-  </ul>
-</section>
+    </div>
+  </a>
 
-<!-- ⑥ セクシー -->
-<section class="section s-sexy">
-  <div class="section-header">
-    <div><span class="num">06</span><span class="title">セクシー</span></div>
-    <div class="meta">12分 ・ BPM 100-128</div>
-  </div>
-  <div class="approach">
-    <span class="label">音楽的アプローチ</span>
-    最新のR&B・ラテンセクシー系で大人ゾーン。<b>つなぎはねっとり</b>、急がない。Tate McRae、Sabrina Carpenter等の最新セクシー曲。
-  </div>
-  <ul class="songs">
-    <li>
-      <div class="song-info">
-        <div class="song-title">It's Ok I'm Ok</div>
-        <div class="song-artist">Tate McRae</div>
-        <div class="song-meta"><span class="bpm">120</span><span class="year">2024</span></div>
+  <a class="card card-d" href="setlist_d_original.html">
+    <div class="card-header">
+      <div>
+        <div class="card-label">VERSION D</div>
+        <div class="card-title">オリジナリティ版</div>
       </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Tate+McRae+Its+Ok+Im+Ok+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">Bed Chem</div>
-        <div class="song-artist">Sabrina Carpenter</div>
-        <div class="song-meta"><span class="bpm">125</span><span class="year">2024</span></div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="card-body">
+      <div class="card-desc">
+        ジャズ・ソウル・ファンク・70s80sディスコ・レアグルーヴ。普通のエアロでは選ばれない曲で「音楽好きの講師」を演出。
       </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Sabrina+Carpenter+Bed+Chem+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">Yes, And?</div>
-        <div class="song-artist">Ariana Grande</div>
-        <div class="song-meta"><span class="bpm">128</span><span class="year">2024</span></div>
+      <div class="tags">
+        <span class="tag hot">羽根節</span>
+        <span class="tag">Jamiroquai</span>
+        <span class="tag">Earth, Wind & Fire</span>
+        <span class="tag">Stevie Wonder</span>
+        <span class="tag">Daft Punk</span>
       </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Ariana+Grande+Yes+And+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">Kill Bill</div>
-        <div class="song-artist">SZA</div>
-        <div class="song-meta"><span class="bpm">89</span><span class="year">2022</span></div>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=SZA+Kill+Bill+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">Karma</div>
-        <div class="song-artist">Taylor Swift</div>
-        <div class="song-meta"><span class="bpm">130</span><span class="year">2022</span></div>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Taylor+Swift+Karma+official" target="_blank">YouTube</a>
-    </li>
-  </ul>
-</section>
+    </div>
+  </a>
 
-<!-- ⑦ はげしさ② -->
-<section class="section s-heavy2">
-  <div class="section-header">
-    <div><span class="num">07</span><span class="title">はげしさ ② / 爆発</span></div>
-    <div class="meta">15分 ・ BPM 90-130 / 第二の山 🔥🔥</div>
-  </div>
-  <div class="approach">
-    <span class="label">音楽的アプローチ</span>
-    最新のラテン・レゲトン・ハイブリッド系で爆発させる。Bad Bunny、Karol G、Peso Plumaなど現在進行形のラテンスター。<b>つなぎはメリハリで世界切替え</b>。
-  </div>
-  <ul class="songs">
-    <li>
-      <div class="song-info">
-        <div class="song-title">TQG</div>
-        <div class="song-artist">Karol G & Shakira</div>
-        <div class="song-meta"><span class="bpm">100</span><span class="year">2023</span></div>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Karol+G+Shakira+TQG+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">Ella Baila Sola</div>
-        <div class="song-artist">Eslabon Armado & Peso Pluma</div>
-        <div class="song-meta"><span class="bpm">160/80</span><span class="year">2023</span></div>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Eslabon+Armado+Peso+Pluma+Ella+Baila+Sola+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">Monaco</div>
-        <div class="song-artist">Bad Bunny</div>
-        <div class="song-meta"><span class="bpm">120</span><span class="year">2023</span></div>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Bad+Bunny+Monaco+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">Mañana Será Bonito</div>
-        <div class="song-artist">Karol G</div>
-        <div class="song-meta"><span class="bpm">100</span><span class="year">2023</span></div>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Karol+G+Manana+Sera+Bonito+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">PROVENZA</div>
-        <div class="song-artist">Karol G</div>
-        <div class="song-meta"><span class="bpm">95</span><span class="year">2022</span></div>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Karol+G+Provenza+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">Tití Me Preguntó</div>
-        <div class="song-artist">Bad Bunny</div>
-        <div class="song-meta"><span class="bpm">106</span><span class="year">2022</span></div>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Bad+Bunny+Titi+Me+Pregunto+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">unholy</div>
-        <div class="song-artist">Sam Smith & Kim Petras</div>
-        <div class="song-meta"><span class="bpm">131</span><span class="year">2022</span></div>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Sam+Smith+Kim+Petras+Unholy+official" target="_blank">YouTube</a>
-    </li>
-  </ul>
-</section>
-
-<!-- ⑧ クールダウン -->
-<section class="section s-cool">
-  <div class="section-header">
-    <div><span class="num">08</span><span class="title">クールダウン / 整理</span></div>
-    <div class="meta">5分 ・ BPM 60-80</div>
-  </div>
-  <div class="approach">
-    <span class="label">音楽的アプローチ</span>
-    最新の感動系バラードで余韻。Billie Eilish、Olivia Rodrigo等の静かな美しい曲。
-  </div>
-  <ul class="songs">
-    <li>
-      <div class="song-info">
-        <div class="song-title">Birds of a Feather</div>
-        <div class="song-artist">Billie Eilish</div>
-        <div class="song-meta"><span class="bpm">105</span><span class="year">2024</span></div>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Billie+Eilish+Birds+of+a+Feather+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">Drivers License</div>
-        <div class="song-artist">Olivia Rodrigo</div>
-        <div class="song-meta"><span class="bpm">72</span><span class="year">2021</span></div>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Olivia+Rodrigo+Drivers+License+official" target="_blank">YouTube</a>
-    </li>
-    <li>
-      <div class="song-info">
-        <div class="song-title">A Bar Song (Tipsy)</div>
-        <div class="song-artist">Shaboozey</div>
-        <div class="song-meta"><span class="bpm">81</span><span class="year">2024</span></div>
-      </div>
-      <a class="yt-link" href="https://www.youtube.com/results?search_query=Shaboozey+Bar+Song+Tipsy+official" target="_blank">YouTube</a>
-    </li>
-  </ul>
-</section>
+</div>
 
 <footer>
-  <div><a href="index.html" style="color: #2c5f7c; text-decoration: none; font-size: 13px;">← セットリスト集に戻る</a></div>
-  <div style="margin-top: 12px;">VERSION B:最新曲版 / 2022〜2025</div>
-  <div class="note">
-    BPMは公開データに基づく目安です。<br>
-    YouTubeリンクは検索結果に飛びます(公式MVが最上位表示)。
-  </div>
+  <div>90分レッスン セットリスト集</div>
+  <div style="margin-top: 6px; font-size: 11px;">全リスト共通:YouTubeリンクは検索結果(公式MV最上位)に飛びます</div>
 </footer>
 
 </body>
