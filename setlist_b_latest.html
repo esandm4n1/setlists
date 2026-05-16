@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>90分レッスン セットリスト集</title>
+<title>B:美のイベント特化版 / 90分レッスン セットリスト</title>
 <style>
   :root {
     --ink: #1a1a1a;
@@ -12,7 +12,15 @@
     --line: #e0dcd2;
     --bg: #faf8f3;
     --card: #ffffff;
-    --accent: #8B2E2E;
+    --accent: #c2185b;
+    --slow: #8b6f9c;
+    --cute: #e88aa7;
+    --fun: #f0a04b;
+    --heavy1: #c2185b;
+    --calm: #9eb09a;
+    --sexy: #6b4e8e;
+    --heavy2: #d63384;
+    --cool: #4a6b7c;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -20,241 +28,610 @@
     background: var(--bg);
     color: var(--ink);
     line-height: 1.6;
-    padding: 20px 16px 40px;
+    padding: 16px;
     max-width: 720px;
     margin: 0 auto;
     font-size: 15px;
   }
   header {
-    text-align: center;
-    padding: 24px 4px 32px;
+    padding: 20px 4px 24px;
     border-bottom: 2px solid var(--accent);
-    margin-bottom: 32px;
+    margin-bottom: 24px;
   }
   h1 {
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 700;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     letter-spacing: 0.02em;
   }
-  .sub {
-    color: var(--sub);
-    font-size: 13px;
-  }
+  .sub { color: var(--sub); font-size: 13px; margin-bottom: 12px; }
   .intro {
     background: var(--card);
     border: 1px solid var(--line);
     border-radius: 8px;
-    padding: 16px 18px;
+    padding: 14px 16px;
     font-size: 13px;
     color: var(--sub);
-    margin-bottom: 32px;
-    line-height: 1.75;
+    margin-top: 12px;
   }
   .intro strong { color: var(--ink); }
-
-  .cards {
-    display: grid;
-    gap: 16px;
-  }
-  .card {
-    display: block;
+  .section {
+    margin-bottom: 28px;
     background: var(--card);
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
-    text-decoration: none;
-    color: inherit;
     border: 1px solid var(--line);
-    transition: transform 0.15s, box-shadow 0.15s;
   }
-  .card:hover, .card:active {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-  }
-  .card-header {
-    padding: 18px 22px;
+  .section-header {
+    padding: 14px 18px;
     color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .section-header .num { font-size: 12px; opacity: 0.85; margin-right: 8px; font-weight: 700; }
+  .section-header .title { font-size: 18px; font-weight: 700; }
+  .section-header .meta { font-size: 12px; opacity: 0.9; font-weight: 500; }
+  .s-slow .section-header { background: var(--slow); }
+  .s-cute .section-header { background: var(--cute); }
+  .s-fun .section-header { background: var(--fun); }
+  .s-heavy1 .section-header { background: var(--heavy1); }
+  .s-calm .section-header { background: var(--calm); }
+  .s-sexy .section-header { background: var(--sexy); }
+  .s-heavy2 .section-header { background: var(--heavy2); }
+  .s-cool .section-header { background: var(--cool); }
+  .approach {
+    padding: 12px 18px;
+    background: #fdf4f7;
+    font-size: 12.5px;
+    color: var(--sub);
+    border-bottom: 1px solid var(--line);
+    line-height: 1.65;
+  }
+  .approach .label {
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 4px;
+  }
+  ul.songs { list-style: none; padding: 6px 0; }
+  ul.songs li {
+    padding: 12px 18px;
+    border-bottom: 1px solid #f0ece3;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 12px;
   }
-  .card-label {
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    opacity: 0.9;
-    font-weight: 700;
-    margin-bottom: 4px;
-  }
-  .card-title {
-    font-size: 22px;
-    font-weight: 700;
-  }
-  .card-arrow {
-    font-size: 24px;
-    opacity: 0.85;
-  }
-  .card-body {
-    padding: 16px 22px 20px;
-  }
-  .card-desc {
-    font-size: 13px;
-    color: var(--sub);
-    margin-bottom: 12px;
-    line-height: 1.7;
-  }
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  .tag {
+  ul.songs li:last-child { border-bottom: none; }
+  .song-info { flex: 1; min-width: 0; }
+  .song-title { font-weight: 700; font-size: 14px; color: var(--ink); margin-bottom: 2px; line-height: 1.4; }
+  .song-artist { font-size: 12px; color: var(--sub); margin-bottom: 2px; }
+  .song-meta { font-size: 11px; color: var(--muted); }
+  .bpm {
     display: inline-block;
-    background: #f0ece3;
-    color: var(--sub);
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 11px;
-    font-weight: 500;
-  }
-  .tag.hot {
     background: var(--accent);
     color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-right: 6px;
+    letter-spacing: 0.03em;
   }
-
-  /* カードごとの色 */
-  .card-a .card-header { background: linear-gradient(135deg, #8B2E2E, #a04545); }
-  .card-b .card-header { background: linear-gradient(135deg, #2c5f7c, #4a7d99); }
-  .card-c .card-header { background: linear-gradient(135deg, #1a1a1a, #4a4a4a); }
-  .card-d .card-header { background: linear-gradient(135deg, #6b4e8e, #c4593b); }
-
+  .year { color: var(--muted); font-size: 11px; }
+  .kpop-tag {
+    display: inline-block;
+    background: #d63384;
+    color: white;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    margin-left: 4px;
+    letter-spacing: 0.03em;
+  }
+  .west-tag {
+    display: inline-block;
+    background: #2c5f7c;
+    color: white;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    margin-left: 4px;
+    letter-spacing: 0.03em;
+  }
+  .yt-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #ff0000;
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: opacity 0.15s;
+  }
+  .yt-link:hover, .yt-link:active { opacity: 0.85; }
+  .yt-link::before { content: "▶"; margin-right: 4px; font-size: 10px; }
   footer {
-    margin-top: 40px;
+    margin-top: 32px;
     padding: 20px 4px;
     text-align: center;
     font-size: 12px;
     color: var(--muted);
     border-top: 1px solid var(--line);
   }
-
+  footer .note { margin-top: 8px; font-size: 11px; line-height: 1.7; }
   @media (max-width: 480px) {
-    body { padding: 16px 12px 32px; }
-    h1 { font-size: 22px; }
-    .card-title { font-size: 19px; }
-    .card-header { padding: 16px 18px; }
-    .card-body { padding: 14px 18px 18px; }
+    body { padding: 12px; font-size: 14px; }
+    h1 { font-size: 20px; }
+    .section-header { padding: 12px 14px; }
+    .approach { padding: 10px 14px; font-size: 12px; }
+    ul.songs li { padding: 10px 14px; }
+    .yt-link { padding: 7px 10px; font-size: 11px; }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>90分レッスン セットリスト集</h1>
-  <div class="sub">ステップ → エアロ → ステップ → ズンバ / 4種類のバージョン</div>
+  <div style="margin-bottom: 12px;"><a href="index.html" style="color: #c2185b; text-decoration: none; font-size: 13px;">← セットリスト集に戻る</a></div>
+  <div style="font-size: 11px; letter-spacing: 0.15em; color: #c2185b; font-weight: 700; margin-bottom: 4px;">VERSION B</div>
+  <h1>美のイベント特化版</h1>
+  <div class="sub">2025〜2026最新 / K-POP × 洋楽 / 「映える」トレンド全振り</div>
+  <div class="intro">
+    <strong>このバージョンの設計思想:</strong><br>
+    ヘアセット・メイク・美にまつわるイベントは、参加者の意識が<b>「自己演出」「映える」「トレンド共有」</b>にある場。<br>
+    普通のフィットネスとは違い、求められるのは<b>「今、SNSで流れてる音」「ステージ感」「写真や動画に残る瞬間」</b>。<br>
+    懐メロや古典化した良曲は外し、<b>2025〜2026の現役ヒット</b>のみで構成。K-POP(4世代中心)と洋楽トレンドのミックス。<br>
+    各曲に<span class="kpop-tag">K-POP</span><span class="west-tag">洋楽</span>タグ付き。
+  </div>
 </header>
 
-<div class="intro">
-  <strong>使い方:</strong> その日の客層・雰囲気・気分で4種類のセットリストから選んでください。<br>
-  各バージョンとも8段階構成(ゆっくり → かわいさ → たのしさ → はげしさ① → おちつき → セクシー → はげしさ② → クールダウン)で組まれていて、曲ごとにBPM・年・YouTubeリンク付き。<br>
-  <strong>組み合わせて使うのもアリ</strong>:Aで王道、Cではげしさ①だけロックに差し替え、など。
-</div>
+<!-- ① ゆっくり -->
+<section class="section s-slow">
+  <div class="section-header">
+    <div><span class="num">01</span><span class="title">ゆっくり / ウォームアップ</span></div>
+    <div class="meta">10分 ・ BPM 95-115</div>
+  </div>
+  <div class="approach">
+    <span class="label">音楽的アプローチ</span>
+    <b>洗練されたミッドテンポ最新R&B/メロウK-POP</b>で「今日は特別な日」感を演出。Sabrina Carpenter、ROSÉの最新で世界観を作る。<b>つなぎはスムース</b>、ステージ感ある音場で。
+  </div>
+  <ul class="songs">
+    <li>
+      <div class="song-info">
+        <div class="song-title">Manchild<span class="west-tag">洋楽</span></div>
+        <div class="song-artist">Sabrina Carpenter</div>
+        <div class="song-meta"><span class="bpm">106</span><span class="year">2025</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Sabrina+Carpenter+Manchild+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">number one girl<span class="west-tag">洋楽</span></div>
+        <div class="song-artist">ROSÉ</div>
+        <div class="song-meta"><span class="bpm">110</span><span class="year">2024</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Rose+number+one+girl+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Ordinary<span class="west-tag">洋楽</span></div>
+        <div class="song-artist">Alex Warren</div>
+        <div class="song-meta"><span class="bpm">90</span><span class="year">2025</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Alex+Warren+Ordinary+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Doechii - Anxiety<span class="west-tag">洋楽</span></div>
+        <div class="song-artist">Doechii</div>
+        <div class="song-meta"><span class="bpm">115</span><span class="year">2025</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Doechii+Anxiety+official" target="_blank">YouTube</a>
+    </li>
+  </ul>
+</section>
 
-<div class="cards">
+<!-- ② かわいさ -->
+<section class="section s-cute">
+  <div class="section-header">
+    <div><span class="num">02</span><span class="title">かわいさ</span></div>
+    <div class="meta">12分 ・ BPM 110-140</div>
+  </div>
+  <div class="approach">
+    <span class="label">音楽的アプローチ</span>
+    <b>K-POP 4世代の明るめ系</b>を中心に、洋楽の今のスター曲をミックス。NewJeans、IVE、Sabrina Carpenter。<b>"映え可愛い"の代表選手</b>を投入、SNS世代の参加者が一気に画面オン状態に。
+  </div>
+  <ul class="songs">
+    <li>
+      <div class="song-info">
+        <div class="song-title">Supernova<span class="kpop-tag">K-POP</span></div>
+        <div class="song-artist">aespa</div>
+        <div class="song-meta"><span class="bpm">149</span><span class="year">2024</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=aespa+Supernova+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Espresso<span class="west-tag">洋楽</span></div>
+        <div class="song-artist">Sabrina Carpenter</div>
+        <div class="song-meta"><span class="bpm">104</span><span class="year">2024</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Sabrina+Carpenter+Espresso+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Hype Boy<span class="kpop-tag">K-POP</span></div>
+        <div class="song-artist">NewJeans</div>
+        <div class="song-meta"><span class="bpm">140</span><span class="year">2022</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=NewJeans+Hype+Boy+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">I AM<span class="kpop-tag">K-POP</span></div>
+        <div class="song-artist">IVE</div>
+        <div class="song-meta"><span class="bpm">130</span><span class="year">2023</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=IVE+I+AM+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Magnetic<span class="kpop-tag">K-POP</span></div>
+        <div class="song-artist">ILLIT</div>
+        <div class="song-meta"><span class="bpm">140</span><span class="year">2024</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=ILLIT+Magnetic+official" target="_blank">YouTube</a>
+    </li>
+  </ul>
+</section>
 
-  <a class="card card-a" href="setlist_a_classic.html">
-    <div class="card-header">
-      <div>
-        <div class="card-label">VERSION A</div>
-        <div class="card-title">王道版</div>
+<!-- ③ たのしさ -->
+<section class="section s-fun">
+  <div class="section-header">
+    <div><span class="num">03</span><span class="title">たのしさ</span></div>
+    <div class="meta">13分 ・ BPM 110-140</div>
+  </div>
+  <div class="approach">
+    <span class="label">音楽的アプローチ</span>
+    <b>振付映え・SNS映え系の最新曲</b>でテンション上昇。Charli XCXのBratシーズン、aespa "Whiplash"、Tate McRae。<b>TikTokダンスチャレンジになった曲が多めで参加者の身体が勝手に動く</b>ゾーン。
+  </div>
+  <ul class="songs">
+    <li>
+      <div class="song-info">
+        <div class="song-title">360<span class="west-tag">洋楽</span></div>
+        <div class="song-artist">Charli XCX</div>
+        <div class="song-meta"><span class="bpm">130</span><span class="year">2024</span></div>
       </div>
-      <div class="card-arrow">→</div>
-    </div>
-    <div class="card-body">
-      <div class="card-desc">
-        30〜40代に確実に刺さる現代ヒット+00年代懐メロ。「これさえあれば外さない」安定の鉄板版。
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Charli+XCX+360+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Whiplash<span class="kpop-tag">K-POP</span></div>
+        <div class="song-artist">aespa</div>
+        <div class="song-meta"><span class="bpm">134</span><span class="year">2024</span></div>
       </div>
-      <div class="tags">
-        <span class="tag hot">鉄板</span>
-        <span class="tag">Bruno Mars</span>
-        <span class="tag">Lady Gaga</span>
-        <span class="tag">Beyoncé</span>
-        <span class="tag">Shakira</span>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=aespa+Whiplash+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">EASY<span class="kpop-tag">K-POP</span></div>
+        <div class="song-artist">LE SSERAFIM</div>
+        <div class="song-meta"><span class="bpm">140</span><span class="year">2024</span></div>
       </div>
-    </div>
-  </a>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=LE+SSERAFIM+EASY+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Greedy<span class="west-tag">洋楽</span></div>
+        <div class="song-artist">Tate McRae</div>
+        <div class="song-meta"><span class="bpm">112</span><span class="year">2023</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Tate+McRae+Greedy+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Queencard<span class="kpop-tag">K-POP</span></div>
+        <div class="song-artist">(G)I-DLE</div>
+        <div class="song-meta"><span class="bpm">104</span><span class="year">2023</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=G+I-DLE+Queencard+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">FOCUS<span class="kpop-tag">K-POP</span></div>
+        <div class="song-artist">Hearts2Hearts</div>
+        <div class="song-meta"><span class="bpm">128</span><span class="year">2026</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Hearts2Hearts+FOCUS+official" target="_blank">YouTube</a>
+    </li>
+  </ul>
+</section>
 
-  <a class="card card-b" href="setlist_b_latest.html">
-    <div class="card-header">
-      <div>
-        <div class="card-label">VERSION B</div>
-        <div class="card-title">美のイベント特化版</div>
+<!-- ④ はげしさ① -->
+<section class="section s-heavy1">
+  <div class="section-header">
+    <div><span class="num">04</span><span class="title">はげしさ ① / EDM&K-POPピーク</span></div>
+    <div class="meta">15分 ・ BPM 125-150 / 第一の山 🔥</div>
+  </div>
+  <div class="approach">
+    <span class="label">音楽的アプローチ</span>
+    <b>BLACKPINK "JUMP"を中心軸</b>に置く。これはハードスタイル/EuroDance/EDMの2025年最大ヒット、Obama元大統領も年間ベストに選んだ曲。<b>これ1曲でレッスン全体の印象が決まる</b>。<br>
+    aespa Supernovaクラスの強烈K-POP+Charli XCX系EDMで攻め切る。
+  </div>
+  <ul class="songs">
+    <li>
+      <div class="song-info">
+        <div class="song-title">JUMP<span class="kpop-tag">K-POP</span></div>
+        <div class="song-artist">BLACKPINK</div>
+        <div class="song-meta"><span class="bpm">145</span><span class="year">2025</span></div>
       </div>
-      <div class="card-arrow">→</div>
-    </div>
-    <div class="card-body">
-      <div class="card-desc">
-        2025〜2026最新、K-POP×洋楽ミックス。ヘアセット・メイク等の美にまつわるイベントで「映える」「ステージ感」「トレンド共有」を最大化する全振り構成。
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=BLACKPINK+JUMP+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">FaSHioN<span class="kpop-tag">K-POP</span></div>
+        <div class="song-artist">CORTIS</div>
+        <div class="song-meta"><span class="bpm">132</span><span class="year">2026</span></div>
       </div>
-      <div class="tags">
-        <span class="tag hot">最新</span>
-        <span class="tag">BLACKPINK</span>
-        <span class="tag">aespa</span>
-        <span class="tag">ROSÉ & Bruno Mars</span>
-        <span class="tag">Sabrina Carpenter</span>
-        <span class="tag">Taylor Swift</span>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=CORTIS+FaSHioN+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Gnarly<span class="kpop-tag">K-POP</span></div>
+        <div class="song-artist">KATSEYE</div>
+        <div class="song-meta"><span class="bpm">135</span><span class="year">2025</span></div>
       </div>
-    </div>
-  </a>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=KATSEYE+Gnarly+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Von Dutch<span class="west-tag">洋楽</span></div>
+        <div class="song-artist">Charli XCX</div>
+        <div class="song-meta"><span class="bpm">152</span><span class="year">2024</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Charli+XCX+Von+Dutch+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Sticky<span class="west-tag">洋楽</span></div>
+        <div class="song-artist">Tyler, The Creator</div>
+        <div class="song-meta"><span class="bpm">128</span><span class="year">2024</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Tyler+The+Creator+Sticky+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Dare<span class="west-tag">洋楽</span></div>
+        <div class="song-artist">Adam Port, Stryv &amp; Camila Cabello feat. Malachiii</div>
+        <div class="song-meta"><span class="bpm">125</span><span class="year">2025</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Adam+Port+Camila+Cabello+Dare+official" target="_blank">YouTube</a>
+    </li>
+  </ul>
+</section>
 
-  <a class="card card-c" href="setlist_c_rock.html">
-    <div class="card-header">
-      <div>
-        <div class="card-label">VERSION C</div>
-        <div class="card-title">ロック・ヘヴィ刺し版</div>
+<!-- ⑤ おちつき -->
+<section class="section s-calm">
+  <div class="section-header">
+    <div><span class="num">05</span><span class="title">おちつき / 水分&リセット</span></div>
+    <div class="meta">8分 ・ BPM 90-115</div>
+  </div>
+  <div class="approach">
+    <span class="label">音楽的アプローチ</span>
+    爆発の余韻を残しつつBPMを段階的に落とす。<b>最新のメロウR&B、K-POPバラード寄り</b>で整える時間。<b>つなぎはスムース絶対</b>、参加者の心拍を安全に戻す。
+  </div>
+  <ul class="songs">
+    <li>
+      <div class="song-info">
+        <div class="song-title">Beautiful Things<span class="west-tag">洋楽</span></div>
+        <div class="song-artist">Benson Boone</div>
+        <div class="song-meta"><span class="bpm">75</span><span class="year">2024</span></div>
       </div>
-      <div class="card-arrow">→</div>
-    </div>
-    <div class="card-body">
-      <div class="card-desc">
-        はげしさ①と②にロック・メタル・パンクを集中投入。「無心で動くトランス感」を作る攻めの構成。リピーター獲得用。
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Benson+Boone+Beautiful+Things+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Lose Control<span class="west-tag">洋楽</span></div>
+        <div class="song-artist">Teddy Swims</div>
+        <div class="song-meta"><span class="bpm">96</span><span class="year">2023</span></div>
       </div>
-      <div class="tags">
-        <span class="tag hot">攻め</span>
-        <span class="tag">Linkin Park</span>
-        <span class="tag">Foo Fighters</span>
-        <span class="tag">Rage Against the Machine</span>
-        <span class="tag">Green Day</span>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Teddy+Swims+Lose+Control+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Water<span class="west-tag">洋楽</span></div>
+        <div class="song-artist">Tyla</div>
+        <div class="song-meta"><span class="bpm">115</span><span class="year">2023</span></div>
       </div>
-    </div>
-  </a>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Tyla+Water+official" target="_blank">YouTube</a>
+    </li>
+  </ul>
+</section>
 
-  <a class="card card-d" href="setlist_d_original.html">
-    <div class="card-header">
-      <div>
-        <div class="card-label">VERSION D</div>
-        <div class="card-title">オリジナリティ版</div>
+<!-- ⑥ セクシー -->
+<section class="section s-sexy">
+  <div class="section-header">
+    <div><span class="num">06</span><span class="title">セクシー / 大人の最新</span></div>
+    <div class="meta">12分 ・ BPM 100-130</div>
+  </div>
+  <div class="approach">
+    <span class="label">音楽的アプローチ</span>
+    <b>K-POPソロ女王の最新セクシー曲を集中投入</b>。Jennie、Lisa、ROSÉ。BLACKPINKメンバーのソロは<b>「大人の美」表現の到達点</b>。洋楽のTate McRae、Sabrina Carpenterで現代感も担保。
+  </div>
+  <ul class="songs">
+    <li>
+      <div class="song-info">
+        <div class="song-title">Mantra<span class="kpop-tag">K-POP</span></div>
+        <div class="song-artist">JENNIE</div>
+        <div class="song-meta"><span class="bpm">110</span><span class="year">2024</span></div>
       </div>
-      <div class="card-arrow">→</div>
-    </div>
-    <div class="card-body">
-      <div class="card-desc">
-        ジャズ・ソウル・ファンク・70s80sディスコ・レアグルーヴ。普通のエアロでは選ばれない曲で「音楽好きの講師」を演出。
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=JENNIE+Mantra+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">ROCKSTAR<span class="kpop-tag">K-POP</span></div>
+        <div class="song-artist">LISA</div>
+        <div class="song-meta"><span class="bpm">130</span><span class="year">2024</span></div>
       </div>
-      <div class="tags">
-        <span class="tag hot">羽根節</span>
-        <span class="tag">Jamiroquai</span>
-        <span class="tag">Earth, Wind & Fire</span>
-        <span class="tag">Stevie Wonder</span>
-        <span class="tag">Daft Punk</span>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=LISA+ROCKSTAR+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">It's Ok I'm Ok<span class="west-tag">洋楽</span></div>
+        <div class="song-artist">Tate McRae</div>
+        <div class="song-meta"><span class="bpm">120</span><span class="year">2024</span></div>
       </div>
-    </div>
-  </a>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Tate+McRae+Its+Ok+Im+Ok+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Bed Chem<span class="west-tag">洋楽</span></div>
+        <div class="song-artist">Sabrina Carpenter</div>
+        <div class="song-meta"><span class="bpm">125</span><span class="year">2024</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Sabrina+Carpenter+Bed+Chem+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Talk to You<span class="kpop-tag">K-POP</span></div>
+        <div class="song-artist">YEONJUN</div>
+        <div class="song-meta"><span class="bpm">115</span><span class="year">2026</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=YEONJUN+Talk+to+You+official" target="_blank">YouTube</a>
+    </li>
+  </ul>
+</section>
 
-</div>
+<!-- ⑦ はげしさ② -->
+<section class="section s-heavy2">
+  <div class="section-header">
+    <div><span class="num">07</span><span class="title">はげしさ ② / APT.爆発&K-POPフィナーレ</span></div>
+    <div class="meta">15分 ・ BPM 100-150 / 第二の山 🔥🔥</div>
+  </div>
+  <div class="approach">
+    <span class="label">音楽的アプローチ</span>
+    <b>APT.は外せない</b>。Rosé &amp; Bruno Marsの世界的バズ曲、これでクライマックス作る。BTSの2026カムバック"Swim"、Taylor Swiftの今年最大ヒット"The Fate of Ophelia"も投入。<b>「全員が知ってる最新曲」</b>で爆発させる時間。
+  </div>
+  <ul class="songs">
+    <li>
+      <div class="song-info">
+        <div class="song-title">APT.<span class="kpop-tag">K-POP</span><span class="west-tag">洋楽</span></div>
+        <div class="song-artist">ROSÉ &amp; Bruno Mars</div>
+        <div class="song-meta"><span class="bpm">149</span><span class="year">2024</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Rose+Bruno+Mars+APT+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Swim<span class="kpop-tag">K-POP</span></div>
+        <div class="song-artist">BTS</div>
+        <div class="song-meta"><span class="bpm">130</span><span class="year">2026</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=BTS+Swim+official+2026" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">The Fate of Ophelia<span class="west-tag">洋楽</span></div>
+        <div class="song-artist">Taylor Swift</div>
+        <div class="song-meta"><span class="bpm">130</span><span class="year">2025</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Taylor+Swift+Fate+of+Ophelia+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Hollywood Action<span class="kpop-tag">K-POP</span></div>
+        <div class="song-artist">BOYNEXTDOOR</div>
+        <div class="song-meta"><span class="bpm">128</span><span class="year">2026</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=BOYNEXTDOOR+Hollywood+Action+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">I Just Might<span class="west-tag">洋楽</span></div>
+        <div class="song-artist">Bruno Mars</div>
+        <div class="song-meta"><span class="bpm">115</span><span class="year">2026</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Bruno+Mars+I+Just+Might+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">FAMOUS<span class="kpop-tag">K-POP</span></div>
+        <div class="song-artist">ALLDAY PROJECT</div>
+        <div class="song-meta"><span class="bpm">128</span><span class="year">2025</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=ALLDAY+PROJECT+FAMOUS+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Opalite<span class="west-tag">洋楽</span></div>
+        <div class="song-artist">Taylor Swift</div>
+        <div class="song-meta"><span class="bpm">120</span><span class="year">2026</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Taylor+Swift+Opalite+official" target="_blank">YouTube</a>
+    </li>
+  </ul>
+</section>
+
+<!-- ⑧ クールダウン -->
+<section class="section s-cool">
+  <div class="section-header">
+    <div><span class="num">08</span><span class="title">クールダウン / 整理</span></div>
+    <div class="meta">5分 ・ BPM 65-90</div>
+  </div>
+  <div class="approach">
+    <span class="label">音楽的アプローチ</span>
+    最新の感動系バラードで余韻。Alex Warren、Billie Eilish、Olivia Rodrigoの2024〜2025最新バラード。<b>「今日のイベント、最高だった」</b>を体験として閉じる時間。
+  </div>
+  <ul class="songs">
+    <li>
+      <div class="song-info">
+        <div class="song-title">Birds of a Feather<span class="west-tag">洋楽</span></div>
+        <div class="song-artist">Billie Eilish</div>
+        <div class="song-meta"><span class="bpm">105</span><span class="year">2024</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Billie+Eilish+Birds+of+a+Feather+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Stargazing<span class="west-tag">洋楽</span></div>
+        <div class="song-artist">Myles Smith</div>
+        <div class="song-meta"><span class="bpm">100</span><span class="year">2024</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Myles+Smith+Stargazing+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">APT. (Acoustic)<span class="kpop-tag">K-POP</span></div>
+        <div class="song-artist">ROSÉ</div>
+        <div class="song-meta"><span class="bpm">75</span><span class="year">2024</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Rose+APT+acoustic+official" target="_blank">YouTube</a>
+    </li>
+  </ul>
+</section>
 
 <footer>
-  <div>90分レッスン セットリスト集</div>
-  <div style="margin-top: 6px; font-size: 11px;">全リスト共通:YouTubeリンクは検索結果(公式MV最上位)に飛びます</div>
+  <div><a href="index.html" style="color: #c2185b; text-decoration: none; font-size: 13px;">← セットリスト集に戻る</a></div>
+  <div style="margin-top: 12px;">VERSION B:美のイベント特化版 / 2025〜2026最新</div>
+  <div class="note">
+    BPMは公開データに基づく目安です。<br>
+    YouTubeリンクは検索結果に飛びます(公式MVが最上位表示)。<br>
+    K-POP/洋楽の最新トレンド情報は2026年5月時点。情勢により入れ替え推奨。<br>
+    <b>必ず1曲は入れたい鉄板:</b> APT.(ROSÉ &amp; Bruno Mars)、JUMP(BLACKPINK)、Supernova(aespa)
+  </div>
 </footer>
 
 </body>
