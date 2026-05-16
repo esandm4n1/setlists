@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E:インストラクターセレクト / 90分レッスン セットリスト</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --sub: #555;
+    --muted: #888;
+    --line: #e0dcd2;
+    --bg: #faf8f3;
+    --card: #ffffff;
+    --accent: #c2185b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    padding: 16px;
+    max-width: 720px;
+    margin: 0 auto;
+    font-size: 15px;
+  }
+  header {
+    padding: 20px 4px 24px;
+    border-bottom: 2px solid var(--accent);
+    margin-bottom: 24px;
+  }
+  h1 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+  }
+  .sub { color: var(--sub); font-size: 13px; margin-bottom: 12px; }
+  .intro {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 13px;
+    color: var(--sub);
+    margin-top: 12px;
+    line-height: 1.75;
+  }
+  .intro strong { color: var(--ink); }
+
+  /* タイムライン構造 */
+  .timeline { position: relative; }
+
+  .track {
+    background: var(--card);
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+  .track-header {
+    padding: 14px 18px 8px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .step-circle {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .step-info { flex: 1; min-width: 0; }
+  .step-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin-bottom: 2px;
+    font-weight: 700;
+  }
+  .step-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  /* 色分け */
+  .c-slow { background: #9eb09a; }
+  .c-cute { background: #e88aa7; }
+  .c-fun { background: #f0a04b; }
+  .c-heavy1 { background: #c4593b; }
+  .c-calm { background: #6b7d8c; }
+  .c-sexy { background: #6b4e8e; }
+  .c-heavy2 { background: #d63384; }
+  .c-cool { background: #4a6b7c; }
+  .c-pending { background: #cccccc; }
+
+  .song-meta-row {
+    padding: 0 18px 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  .song-title-text {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.4;
+    margin-right: 4px;
+    flex: 1;
+    min-width: 100%;
+  }
+  .song-artist-text {
+    font-size: 13px;
+    color: var(--sub);
+    flex: 1;
+    min-width: 100%;
+    margin-bottom: 4px;
+  }
+  .meta-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .bpm-badge {
+    background: var(--accent);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+  }
+  .year-badge {
+    background: #e0dcd2;
+    color: #555;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .genre-badge {
+    background: #f5e6ed;
+    color: #c2185b;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  /* YouTube 埋め込み */
+  .yt-embed {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 */
+    background: #000;
+    overflow: hidden;
+  }
+  .yt-embed iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  /* 繋ぎコメント(曲と曲の間) */
+  .transition {
+    margin: 0 auto 14px;
+    padding: 0 14px;
+    position: relative;
+  }
+  .transition-inner {
+    background: #fdf4f7;
+    border-left: 3px solid var(--accent);
+    padding: 10px 14px;
+    border-radius: 0 6px 6px 0;
+    font-size: 12px;
+    color: var(--sub);
+    line-height: 1.6;
+  }
+  .transition-label {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    padding: 1px 7px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-right: 6px;
+    vertical-align: 2px;
+  }
+  .transition-inner strong { color: var(--ink); }
+
+  /* プレースホルダー(⑦) */
+  .placeholder {
+    background: #f8f7f4;
+    border: 2px dashed #c0bcb2;
+  }
+  .placeholder .song-title-text { color: var(--muted); font-style: italic; }
+  .placeholder-notice {
+    padding: 14px 18px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  footer {
+    margin-top: 32px;
+    padding: 20px 4px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+  }
+  footer .note { margin-top: 8px; font-size: 11px; line-height: 1.7; }
+
+  @media (max-width: 480px) {
+    body { padding: 12px; font-size: 14px; }
+    h1 { font-size: 20px; }
+    .track-header { padding: 12px 14px 8px; }
+    .song-meta-row { padding: 0 14px 12px; }
+    .transition { padding: 0 8px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div style="margin-bottom: 12px;"><a href="index.html" style="color: #c2185b; text-decoration: none; font-size: 13px;">← セットリスト集に戻る</a></div>
+  <div style="font-size: 11px; letter-spacing: 0.15em; color: #c2185b; font-weight: 700; margin-bottom: 4px;">VERSION E</div>
+  <h1>インストラクターセレクト</h1>
+  <div class="sub">彼女が選んだ8曲、一連の流れを試聴できる構成</div>
+  <div class="intro">
+    <strong>このバージョンについて:</strong><br>
+    インストラクター本人が直接セレクトした曲を、レッスンの<b>8段階構成順に並べたもの</b>。<br>
+    各曲の<b>YouTube公式動画をページ内で直接再生</b>できるので、上から順にスクロールしながら一連の流れを試聴可能。<br>
+    曲と曲の間に<b>「繋ぎコメント」</b>(BPM変化・接続意図)を添えてあるので、レッスン構成上の意味も確認できる。<br>
+    ※ 1セクション1曲構成のため、実際のレッスンでは曲のリピート・編集等で時間調整が前提。
+  </div>
+</header>
+
+<div class="timeline">
+
+  <!-- ① ゆっくり: Doechii - Anxiety -->
+  <div class="track">
+    <div class="track-header">
+      <div class="step-circle c-slow">01</div>
+      <div class="step-info">
+        <div class="step-label">SECTION 01 ・ 10分</div>
+        <div class="step-name">ゆっくり / ウォームアップ</div>
+      </div>
+    </div>
+    <div class="song-meta-row">
+      <div class="song-title-text">Anxiety</div>
+      <div class="song-artist-text">Doechii</div>
+      <div class="meta-badges">
+        <span class="bpm-badge">BPM 129</span>
+        <span class="year-badge">2025</span>
+        <span class="genre-badge">R&amp;B / Hip-Hop</span>
+      </div>
+    </div>
+    <div class="yt-embed">
+      <iframe src="https://www.youtube.com/embed/riCP9x31Kuk" 
+              title="Doechii - Anxiety" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- 繋ぎコメント ①→② -->
+  <div class="transition">
+    <div class="transition-inner">
+      <span class="transition-label">つなぎ</span>
+      Doechiiの<b>129 BPM</b>(または半テンポで65 BPM扱い)から、ILLITの<b>軽やかなレトロポップ</b>へ。Trap系の重さから一転、Y2Kリバイバルな空気感に切り替わる。<b>世界観が大きく変わるメリハリ繋ぎ</b>。
+    </div>
+  </div>
+
+  <!-- ② かわいさ: ILLIT - Almond Chocolate -->
+  <div class="track">
+    <div class="track-header">
+      <div class="step-circle c-cute">02</div>
+      <div class="step-info">
+        <div class="step-label">SECTION 02 ・ 12分</div>
+        <div class="step-name">かわいさ</div>
+      </div>
+    </div>
+    <div class="song-meta-row">
+      <div class="song-title-text">Almond Chocolate</div>
+      <div class="song-artist-text">ILLIT</div>
+      <div class="meta-badges">
+        <span class="bpm-badge">BPM 約120</span>
+        <span class="year-badge">2025</span>
+        <span class="genre-badge">K-POP / J-POP</span>
+      </div>
+    </div>
+    <div class="yt-embed">
+      <iframe src="https://www.youtube.com/embed/qlgEadao-Sk" 
+              title="ILLIT - Almond Chocolate" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- 繋ぎコメント ②→③ -->
+  <div class="transition">
+    <div class="transition-inner">
+      <span class="transition-label">つなぎ</span>
+      ILLITのレトロかわいい世界から、Kep1erの<b>Big Room House系ダンスポップ</b>へ。<b>BPMは120→126で微増</b>、参加者がそろそろ動きたくなる時間帯で<b>スムースに上げていく繋ぎ</b>。
+    </div>
+  </div>
+
+  <!-- ③ たのしさ: Kep1er - WA DA DA -->
+  <div class="track">
+    <div class="track-header">
+      <div class="step-circle c-fun">03</div>
+      <div class="step-info">
+        <div class="step-label">SECTION 03 ・ 13分</div>
+        <div class="step-name">たのしさ</div>
+      </div>
+    </div>
+    <div class="song-meta-row">
+      <div class="song-title-text">WA DA DA</div>
+      <div class="song-artist-text">Kep1er</div>
+      <div class="meta-badges">
+        <span class="bpm-badge">BPM 126</span>
+        <span class="year-badge">2022</span>
+        <span class="genre-badge">K-POP / Dance Pop</span>
+      </div>
+    </div>
+    <div class="yt-embed">
+      <iframe src="https://www.youtube.com/embed/n0j5NPptyM0" 
+              title="Kep1er - WA DA DA" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- 繋ぎコメント ③→④ -->
+  <div class="transition">
+    <div class="transition-inner">
+      <span class="transition-label">つなぎ</span>
+      Kep1erの126 BPMから、BLACKPINKも<b>同じ126 BPM</b>。<b>BPMはそのままで「楽しい」から「激しい」へ世界観を切り替える</b>。EDM系の華やかさへ。テンションが一段上がる<b>メリハリ繋ぎ</b>。
+    </div>
+  </div>
+
+  <!-- ④ はげしさ①: BLACKPINK - AS IF IT'S YOUR LAST -->
+  <div class="track">
+    <div class="track-header">
+      <div class="step-circle c-heavy1">04</div>
+      <div class="step-info">
+        <div class="step-label">SECTION 04 ・ 15分 ・ 第一の山 🔥</div>
+        <div class="step-name">はげしさ ① / エアロピーク</div>
+      </div>
+    </div>
+    <div class="song-meta-row">
+      <div class="song-title-text">AS IF IT'S YOUR LAST</div>
+      <div class="song-artist-text">BLACKPINK</div>
+      <div class="meta-badges">
+        <span class="bpm-badge">BPM 126</span>
+        <span class="year-badge">2017</span>
+        <span class="genre-badge">K-POP / EDM</span>
+      </div>
+    </div>
+    <div class="yt-embed">
+      <iframe src="https://www.youtube.com/embed/Amq-qlqbjYA" 
+              title="BLACKPINK - AS IF IT'S YOUR LAST" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- 繋ぎコメント ④→⑤ -->
+  <div class="transition">
+    <div class="transition-inner">
+      <span class="transition-label">つなぎ</span>
+      BLACKPINKの126 BPMから、Jamiroquaiの<b>96 BPM</b>へ。<b>30 BPMも一気に落ちる大きな段差</b>。怪我防止のため、ここで意図的に世界観をガラッと変える。<b>K-POP EDMから一気に1996年のアシッドジャズへ</b>、参加者の体と意識をリセットさせる<b>メリハリ繋ぎ</b>。
+    </div>
+  </div>
+
+  <!-- ⑤ おちつき: Jamiroquai - Virtual Insanity -->
+  <div class="track">
+    <div class="track-header">
+      <div class="step-circle c-calm">05</div>
+      <div class="step-info">
+        <div class="step-label">SECTION 05 ・ 8分</div>
+        <div class="step-name">徐々におちつき / 水分&amp;リセット</div>
+      </div>
+    </div>
+    <div class="song-meta-row">
+      <div class="song-title-text">Virtual Insanity</div>
+      <div class="song-artist-text">Jamiroquai</div>
+      <div class="meta-badges">
+        <span class="bpm-badge">BPM 96</span>
+        <span class="year-badge">1996</span>
+        <span class="genre-badge">アシッドジャズ</span>
+      </div>
+    </div>
+    <div class="yt-embed">
+      <iframe src="https://www.youtube.com/embed/4JkIs37a2JE" 
+              title="Jamiroquai - Virtual Insanity" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- 繋ぎコメント ⑤→⑥ -->
+  <div class="transition">
+    <div class="transition-inner">
+      <span class="transition-label">つなぎ</span>
+      Jamiroquaiの96 BPMから、Tate McRaeの<b>120 BPM</b>へ。<b>24 BPM上昇するが、両方とも"ねっとりした重さ"がある</b>のでテイスト的に違和感なし。アシッドジャズの大人感から現代R&Bの色気へ、<b>気分はそのままBPMだけ上げるスムース繋ぎ</b>。
+    </div>
+  </div>
+
+  <!-- ⑥ セクシー: Tate McRae - It's Ok I'm Ok -->
+  <div class="track">
+    <div class="track-header">
+      <div class="step-circle c-sexy">06</div>
+      <div class="step-info">
+        <div class="step-label">SECTION 06 ・ 12分</div>
+        <div class="step-name">色っぽさ / セクシー</div>
+      </div>
+    </div>
+    <div class="song-meta-row">
+      <div class="song-title-text">It's Ok I'm Ok</div>
+      <div class="song-artist-text">Tate McRae</div>
+      <div class="meta-badges">
+        <span class="bpm-badge">BPM 120</span>
+        <span class="year-badge">2024</span>
+        <span class="genre-badge">Pop / R&amp;B</span>
+      </div>
+    </div>
+    <div class="yt-embed">
+      <iframe src="https://www.youtube.com/embed/Bpaf6Dm9iRc" 
+              title="Tate McRae - It's Ok I'm Ok" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- 繋ぎコメント ⑥→⑦ -->
+  <div class="transition">
+    <div class="transition-inner">
+      <span class="transition-label">つなぎ</span>
+      セクシーの大人ゾーンから、<b>第二の山「はげしさ②」へ世界観を一気に切り替える</b>場面。BPMも一気に上げてクライマックスへ。<b>メリハリ繋ぎの最大の見せ場</b>。
+    </div>
+  </div>
+
+  <!-- ⑦ はげしさ② (プレースホルダー) -->
+  <div class="track placeholder">
+    <div class="track-header">
+      <div class="step-circle c-pending">07</div>
+      <div class="step-info">
+        <div class="step-label">SECTION 07 ・ 15分 ・ 第二の山 🔥🔥</div>
+        <div class="step-name">はげしさ ② / クライマックス</div>
+      </div>
+    </div>
+    <div class="placeholder-notice">
+      <b style="color:#888;">— 選曲調整中 —</b><br>
+      この場所の曲は、第二の山(15分のクライマックス)を担う1曲。<br>
+      Tate McRaeのセクシーから一気に爆発させる、トレンド感ある激しめの最新曲が想定される位置。
+    </div>
+  </div>
+
+  <!-- 繋ぎコメント ⑦→⑧ -->
+  <div class="transition">
+    <div class="transition-inner">
+      <span class="transition-label">つなぎ</span>
+      ⑦(はげしさ②)のピークから、Jennifer Lopezの<b>ミドルバラード</b>へ。<b>BPMを思い切って落とす、最大のスムース繋ぎ</b>。90分動いた体を静かに戻す。
+    </div>
+  </div>
+
+  <!-- ⑧ ダウン: Jennifer Lopez - The One -->
+  <div class="track">
+    <div class="track-header">
+      <div class="step-circle c-cool">08</div>
+      <div class="step-info">
+        <div class="step-label">SECTION 08 ・ 5分</div>
+        <div class="step-name">ダウン / クールダウン</div>
+      </div>
+    </div>
+    <div class="song-meta-row">
+      <div class="song-title-text">The One</div>
+      <div class="song-artist-text">Jennifer Lopez</div>
+      <div class="meta-badges">
+        <span class="bpm-badge">BPM 約78</span>
+        <span class="year-badge">2002</span>
+        <span class="genre-badge">R&amp;B / Mid-tempo</span>
+      </div>
+    </div>
+    <div class="yt-embed">
+      <iframe src="https://www.youtube.com/embed/Yr9mqDn8-nY" 
+              title="Jennifer Lopez - The One" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen></iframe>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div><a href="index.html" style="color: #c2185b; text-decoration: none; font-size: 13px;">← セットリスト集に戻る</a></div>
+  <div style="margin-top: 12px;">VERSION E:インストラクターセレクト / 彼女選曲</div>
+  <div class="note">
+    BPMは公開データに基づく目安です。<br>
+    YouTube動画はページ内で直接再生できます(モバイル/PC両対応)。<br>
+    実際のレッスンでは曲のリピート・編集等で時間調整が前提。
+  </div>
+</footer>
+
+</body>
+</html>
