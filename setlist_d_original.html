@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D:オリジナリティ版 / 90分レッスン セットリスト</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --sub: #555;
+    --muted: #888;
+    --line: #e0dcd2;
+    --bg: #faf8f3;
+    --card: #ffffff;
+    --accent: #6b4e8e;
+    --slow: #6b7d8c;
+    --cute: #d99bb8;
+    --fun: #e8a44c;
+    --heavy1: #8b3a3a;
+    --calm: #9eb09a;
+    --sexy: #6b4e8e;
+    --heavy2: #c4593b;
+    --cool: #4a6b7c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    padding: 16px;
+    max-width: 720px;
+    margin: 0 auto;
+    font-size: 15px;
+  }
+  header {
+    padding: 20px 4px 24px;
+    border-bottom: 2px solid var(--accent);
+    margin-bottom: 24px;
+  }
+  h1 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+  }
+  .sub { color: var(--sub); font-size: 13px; margin-bottom: 12px; }
+  .intro {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 13px;
+    color: var(--sub);
+    margin-top: 12px;
+  }
+  .intro strong { color: var(--ink); }
+  .section {
+    margin-bottom: 28px;
+    background: var(--card);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .section-header {
+    padding: 14px 18px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .section-header .num { font-size: 12px; opacity: 0.85; margin-right: 8px; font-weight: 700; }
+  .section-header .title { font-size: 18px; font-weight: 700; }
+  .section-header .meta { font-size: 12px; opacity: 0.9; font-weight: 500; }
+  .s-slow .section-header { background: var(--slow); }
+  .s-cute .section-header { background: var(--cute); }
+  .s-fun .section-header { background: var(--fun); }
+  .s-heavy1 .section-header { background: var(--heavy1); }
+  .s-calm .section-header { background: var(--calm); }
+  .s-sexy .section-header { background: var(--sexy); }
+  .s-heavy2 .section-header { background: var(--heavy2); }
+  .s-cool .section-header { background: var(--cool); }
+  .approach {
+    padding: 12px 18px;
+    background: #f7f4ed;
+    font-size: 12.5px;
+    color: var(--sub);
+    border-bottom: 1px solid var(--line);
+    line-height: 1.65;
+  }
+  .approach .label {
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 4px;
+  }
+  ul.songs { list-style: none; padding: 6px 0; }
+  ul.songs li {
+    padding: 12px 18px;
+    border-bottom: 1px solid #f0ece3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  ul.songs li:last-child { border-bottom: none; }
+  .song-info { flex: 1; min-width: 0; }
+  .song-title { font-weight: 700; font-size: 14px; color: var(--ink); margin-bottom: 2px; line-height: 1.4; }
+  .song-artist { font-size: 12px; color: var(--sub); margin-bottom: 2px; }
+  .song-meta { font-size: 11px; color: var(--muted); }
+  .bpm {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-right: 6px;
+    letter-spacing: 0.03em;
+  }
+  .year { color: var(--muted); font-size: 11px; }
+  .genre-tag {
+    display: inline-block;
+    background: #6b4e8e;
+    color: white;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 600;
+    margin-left: 4px;
+    letter-spacing: 0.03em;
+  }
+  .yt-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #ff0000;
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: opacity 0.15s;
+  }
+  .yt-link:hover, .yt-link:active { opacity: 0.85; }
+  .yt-link::before { content: "▶"; margin-right: 4px; font-size: 10px; }
+  footer {
+    margin-top: 32px;
+    padding: 20px 4px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+  }
+  footer .note { margin-top: 8px; font-size: 11px; line-height: 1.7; }
+  @media (max-width: 480px) {
+    body { padding: 12px; font-size: 14px; }
+    h1 { font-size: 20px; }
+    .section-header { padding: 12px 14px; }
+    .approach { padding: 10px 14px; font-size: 12px; }
+    ul.songs li { padding: 10px 14px; }
+    .yt-link { padding: 7px 10px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div style="margin-bottom: 12px;"><a href="index.html" style="color: #6b4e8e; text-decoration: none; font-size: 13px;">← セットリスト集に戻る</a></div>
+  <div style="font-size: 11px; letter-spacing: 0.15em; color: #6b4e8e; font-weight: 700; margin-bottom: 4px;">VERSION D</div>
+  <h1>オリジナリティ版</h1>
+  <div class="sub">ジャンル顔負けなし / ジャズ・ソウル・ファンク・レアグルーヴ・70s80s</div>
+  <div class="intro">
+    <strong>このバージョンの設計思想:</strong><br>
+    普通のエアロでは絶対選ばれない、でも<b>音楽として圧倒的に気持ちいい曲</b>を組み合わせた版。<br>
+    <b>ジャズファンク・ディスコ・ソウル・アシッドジャズ・フレンチハウス・レアグルーヴ</b>を時代もジャンルも横断して配置。「音楽好きの講師ですね」が一発で伝わって、参加者の音楽体験そのものを更新できる。<br>
+    <strong>狙い:</strong> 普通のジムでは聴けない選曲で<b>差別化と知的好奇心</b>を刺激。リピーター獲得・口コミ拡散しやすい。<br>
+    各曲に<span class="genre-tag">ジャンル</span>タグ付き。
+  </div>
+</header>
+
+<!-- ① ゆっくり -->
+<section class="section s-slow">
+  <div class="section-header">
+    <div><span class="num">01</span><span class="title">ゆっくり / ジャズファンクで入る</span></div>
+    <div class="meta">10分 ・ BPM 95-118</div>
+  </div>
+  <div class="approach">
+    <span class="label">音楽的アプローチ</span>
+    <b>アシッドジャズ・ネオソウル</b>で「これから何か特別なものが始まる」感を演出。Jamiroquai、Erykah Badu、D'Angelo。冒頭からBruno Marsじゃないことで参加者が「お?」となる。
+  </div>
+  <ul class="songs">
+    <li>
+      <div class="song-info">
+        <div class="song-title">Virtual Insanity <span class="genre-tag">アシッドジャズ</span></div>
+        <div class="song-artist">Jamiroquai</div>
+        <div class="song-meta"><span class="bpm">96</span><span class="year">1996</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Jamiroquai+Virtual+Insanity+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Brown Sugar <span class="genre-tag">ネオソウル</span></div>
+        <div class="song-artist">D'Angelo</div>
+        <div class="song-meta"><span class="bpm">85</span><span class="year">1995</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=D+Angelo+Brown+Sugar+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Bag Lady <span class="genre-tag">ネオソウル</span></div>
+        <div class="song-artist">Erykah Badu</div>
+        <div class="song-meta"><span class="bpm">95</span><span class="year">2000</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Erykah+Badu+Bag+Lady+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Cosmic Girl <span class="genre-tag">ファンク</span></div>
+        <div class="song-artist">Jamiroquai</div>
+        <div class="song-meta"><span class="bpm">118</span><span class="year">1996</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Jamiroquai+Cosmic+Girl+official" target="_blank">YouTube</a>
+    </li>
+  </ul>
+</section>
+
+<!-- ② かわいさ -->
+<section class="section s-cute">
+  <div class="section-header">
+    <div><span class="num">02</span><span class="title">かわいさ / モータウン&シュガーポップ</span></div>
+    <div class="meta">12分 ・ BPM 110-135</div>
+  </div>
+  <div class="approach">
+    <span class="label">音楽的アプローチ</span>
+    モータウン60sガールズグループ、80s シュガーポップ、ハッピーソウル。<b>歌い上げのキャッチーさは時代を超える</b>。Stevie Wonder、Diana Rossで参加者をニコッとさせる。
+  </div>
+  <ul class="songs">
+    <li>
+      <div class="song-info">
+        <div class="song-title">Signed, Sealed, Delivered I'm Yours <span class="genre-tag">モータウン</span></div>
+        <div class="song-artist">Stevie Wonder</div>
+        <div class="song-meta"><span class="bpm">128</span><span class="year">1970</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Stevie+Wonder+Signed+Sealed+Delivered+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">I'm Coming Out <span class="genre-tag">ディスコ</span></div>
+        <div class="song-artist">Diana Ross</div>
+        <div class="song-meta"><span class="bpm">127</span><span class="year">1980</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Diana+Ross+Im+Coming+Out+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Walking on Sunshine <span class="genre-tag">80sポップ</span></div>
+        <div class="song-artist">Katrina and the Waves</div>
+        <div class="song-meta"><span class="bpm">109</span><span class="year">1983</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Katrina+Waves+Walking+on+Sunshine+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Stop! In the Name of Love <span class="genre-tag">モータウン</span></div>
+        <div class="song-artist">The Supremes</div>
+        <div class="song-meta"><span class="bpm">128</span><span class="year">1965</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Supremes+Stop+In+the+Name+of+Love+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Sir Duke <span class="genre-tag">ファンク</span></div>
+        <div class="song-artist">Stevie Wonder</div>
+        <div class="song-meta"><span class="bpm">131</span><span class="year">1976</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Stevie+Wonder+Sir+Duke+official" target="_blank">YouTube</a>
+    </li>
+  </ul>
+</section>
+
+<!-- ③ たのしさ -->
+<section class="section s-fun">
+  <div class="section-header">
+    <div><span class="num">03</span><span class="title">たのしさ / ジャズファンク&ディスコ</span></div>
+    <div class="meta">13分 ・ BPM 115-128</div>
+  </div>
+  <div class="approach">
+    <span class="label">音楽的アプローチ</span>
+    <b>70sジャズファンク・ディスコの大物</b>を投入。Earth Wind & Fire、Chic、KC and the Sunshine Band。<b>"分かる人には分かる、分からなくても踊れる"</b>が黄金。「September」は世界中で愛される共通言語。
+  </div>
+  <ul class="songs">
+    <li>
+      <div class="song-info">
+        <div class="song-title">September <span class="genre-tag">ファンクディスコ</span></div>
+        <div class="song-artist">Earth, Wind & Fire</div>
+        <div class="song-meta"><span class="bpm">126</span><span class="year">1978</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Earth+Wind+Fire+September+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Le Freak <span class="genre-tag">ディスコファンク</span></div>
+        <div class="song-artist">Chic</div>
+        <div class="song-meta"><span class="bpm">120</span><span class="year">1978</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Chic+Le+Freak+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Boogie Wonderland <span class="genre-tag">ディスコ</span></div>
+        <div class="song-artist">Earth, Wind & Fire</div>
+        <div class="song-meta"><span class="bpm">126</span><span class="year">1979</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Earth+Wind+Fire+Boogie+Wonderland+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">That's the Way (I Like It) <span class="genre-tag">ディスコ</span></div>
+        <div class="song-artist">KC and the Sunshine Band</div>
+        <div class="song-meta"><span class="bpm">130</span><span class="year">1975</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=KC+Sunshine+Band+Thats+the+Way+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Brick House <span class="genre-tag">ファンク</span></div>
+        <div class="song-artist">Commodores</div>
+        <div class="song-meta"><span class="bpm">118</span><span class="year">1977</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Commodores+Brick+House+official" target="_blank">YouTube</a>
+    </li>
+  </ul>
+</section>
+
+<!-- ④ はげしさ① -->
+<section class="section s-heavy1">
+  <div class="section-header">
+    <div><span class="num">04</span><span class="title">はげしさ ① / フレンチハウス&エレクトロ</span></div>
+    <div class="meta">15分 ・ BPM 120-135 / 第一の山 🔥</div>
+  </div>
+  <div class="approach">
+    <span class="label">音楽的アプローチ</span>
+    <b>フレンチハウス・ビッグビート・90s〜00sダンスの傑作</b>で攻める。Daft Punk、Stardust、Justice、Chemical Brothers。「これクラブの曲では?」と思わせて<b>踊らせて勝負</b>。スタミナ系トランス。
+  </div>
+  <ul class="songs">
+    <li>
+      <div class="song-info">
+        <div class="song-title">One More Time <span class="genre-tag">フレンチハウス</span></div>
+        <div class="song-artist">Daft Punk</div>
+        <div class="song-meta"><span class="bpm">123</span><span class="year">2000</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Daft+Punk+One+More+Time+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Music Sounds Better with You <span class="genre-tag">フレンチハウス</span></div>
+        <div class="song-artist">Stardust</div>
+        <div class="song-meta"><span class="bpm">123</span><span class="year">1998</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Stardust+Music+Sounds+Better+with+You+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">D.A.N.C.E. <span class="genre-tag">フレンチエレクトロ</span></div>
+        <div class="song-artist">Justice</div>
+        <div class="song-meta"><span class="bpm">118</span><span class="year">2007</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Justice+DANCE+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Galvanize <span class="genre-tag">ビッグビート</span></div>
+        <div class="song-artist">The Chemical Brothers</div>
+        <div class="song-meta"><span class="bpm">104/208</span><span class="year">2005</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Chemical+Brothers+Galvanize+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Around the World <span class="genre-tag">フレンチハウス</span></div>
+        <div class="song-artist">Daft Punk</div>
+        <div class="song-meta"><span class="bpm">121</span><span class="year">1997</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Daft+Punk+Around+the+World+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Praise You <span class="genre-tag">ビッグビート</span></div>
+        <div class="song-artist">Fatboy Slim</div>
+        <div class="song-meta"><span class="bpm">108</span><span class="year">1998</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Fatboy+Slim+Praise+You+official" target="_blank">YouTube</a>
+    </li>
+  </ul>
+</section>
+
+<!-- ⑤ おちつき -->
+<section class="section s-calm">
+  <div class="section-header">
+    <div><span class="num">05</span><span class="title">おちつき / オールディーズで一息</span></div>
+    <div class="meta">8分 ・ BPM 70-105</div>
+  </div>
+  <div class="approach">
+    <span class="label">音楽的アプローチ</span>
+    クラブミュージックから一転、<b>50s〜60sの名曲</b>で時代を遡る。「映画で聴いたことある」「親が聴いてた」感覚の曲。場を一気に上品にする時間。
+  </div>
+  <ul class="songs">
+    <li>
+      <div class="song-info">
+        <div class="song-title">L-O-V-E <span class="genre-tag">ジャズボーカル</span></div>
+        <div class="song-artist">Nat King Cole</div>
+        <div class="song-meta"><span class="bpm">131/65</span><span class="year">1965</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Nat+King+Cole+LOVE+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Stand by Me <span class="genre-tag">オールディーズ</span></div>
+        <div class="song-artist">Ben E. King</div>
+        <div class="song-meta"><span class="bpm">119</span><span class="year">1961</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Ben+E+King+Stand+by+Me+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Feeling Good <span class="genre-tag">ジャズボーカル</span></div>
+        <div class="song-artist">Nina Simone</div>
+        <div class="song-meta"><span class="bpm">73</span><span class="year">1965</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Nina+Simone+Feeling+Good+official" target="_blank">YouTube</a>
+    </li>
+  </ul>
+</section>
+
+<!-- ⑥ セクシー -->
+<section class="section s-sexy">
+  <div class="section-header">
+    <div><span class="num">06</span><span class="title">セクシー / ソウル&アシッドジャズ</span></div>
+    <div class="meta">12分 ・ BPM 95-125</div>
+  </div>
+  <div class="approach">
+    <span class="label">音楽的アプローチ</span>
+    <b>大人のソウル・ファンク・アシッドジャズ</b>でディープな色気。Marvin Gaye、Sade、Jamiroquai。<b>本物の色気は古い音楽にしかない</b>って体感できる時間。ヒップロール、ボディウェーブが映える。
+  </div>
+  <ul class="songs">
+    <li>
+      <div class="song-info">
+        <div class="song-title">Sexual Healing <span class="genre-tag">ソウル</span></div>
+        <div class="song-artist">Marvin Gaye</div>
+        <div class="song-meta"><span class="bpm">94</span><span class="year">1982</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Marvin+Gaye+Sexual+Healing+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Smooth Operator <span class="genre-tag">ソフィスティポップ</span></div>
+        <div class="song-artist">Sade</div>
+        <div class="song-meta"><span class="bpm">115</span><span class="year">1984</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Sade+Smooth+Operator+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Canned Heat <span class="genre-tag">アシッドジャズ</span></div>
+        <div class="song-artist">Jamiroquai</div>
+        <div class="song-meta"><span class="bpm">123</span><span class="year">1999</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Jamiroquai+Canned+Heat+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Rock With You <span class="genre-tag">ディスコソウル</span></div>
+        <div class="song-artist">Michael Jackson</div>
+        <div class="song-meta"><span class="bpm">114</span><span class="year">1979</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Michael+Jackson+Rock+With+You+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Use Me <span class="genre-tag">ソウルファンク</span></div>
+        <div class="song-artist">Bill Withers</div>
+        <div class="song-meta"><span class="bpm">98</span><span class="year">1972</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Bill+Withers+Use+Me+official" target="_blank">YouTube</a>
+    </li>
+  </ul>
+</section>
+
+<!-- ⑦ はげしさ② -->
+<section class="section s-heavy2">
+  <div class="section-header">
+    <div><span class="num">07</span><span class="title">はげしさ ② / 70s80sやる気状態フル稼働</span></div>
+    <div class="meta">15分 ・ BPM 110-135 / 第二の山 🔥🔥</div>
+  </div>
+  <div class="approach">
+    <span class="label">音楽的アプローチ</span>
+    <b>70s80sディスコ・ファンク・MJ系で爆発</b>。Michael Jackson、Prince、Donna Summer。<b>"伝説の曲しか入れません"宣言</b>のような構成。これで踊れないなら音楽の方が悪い、レベルの爆発力。
+  </div>
+  <ul class="songs">
+    <li>
+      <div class="song-info">
+        <div class="song-title">Don't Stop 'Til You Get Enough <span class="genre-tag">ディスコファンク</span></div>
+        <div class="song-artist">Michael Jackson</div>
+        <div class="song-meta"><span class="bpm">119</span><span class="year">1979</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Michael+Jackson+Dont+Stop+Til+You+Get+Enough+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Billie Jean <span class="genre-tag">ポップファンク</span></div>
+        <div class="song-artist">Michael Jackson</div>
+        <div class="song-meta"><span class="bpm">117</span><span class="year">1982</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Michael+Jackson+Billie+Jean+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Kiss <span class="genre-tag">ミネアポリスファンク</span></div>
+        <div class="song-artist">Prince</div>
+        <div class="song-meta"><span class="bpm">120</span><span class="year">1986</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Prince+Kiss+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">I Feel Love <span class="genre-tag">ディスコ電子</span></div>
+        <div class="song-artist">Donna Summer</div>
+        <div class="song-meta"><span class="bpm">125</span><span class="year">1977</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Donna+Summer+I+Feel+Love+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Good Times <span class="genre-tag">ディスコ</span></div>
+        <div class="song-artist">Chic</div>
+        <div class="song-meta"><span class="bpm">115</span><span class="year">1979</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Chic+Good+Times+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">I Wanna Dance with Somebody <span class="genre-tag">80sポップ</span></div>
+        <div class="song-artist">Whitney Houston</div>
+        <div class="song-meta"><span class="bpm">119</span><span class="year">1987</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Whitney+Houston+I+Wanna+Dance+with+Somebody+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Lady (Hear Me Tonight) <span class="genre-tag">フレンチハウス</span></div>
+        <div class="song-artist">Modjo</div>
+        <div class="song-meta"><span class="bpm">126</span><span class="year">2000</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Modjo+Lady+Hear+Me+Tonight+official" target="_blank">YouTube</a>
+    </li>
+  </ul>
+</section>
+
+<!-- ⑧ クールダウン -->
+<section class="section s-cool">
+  <div class="section-header">
+    <div><span class="num">08</span><span class="title">クールダウン / 余韻の名曲</span></div>
+    <div class="meta">5分 ・ BPM 60-80</div>
+  </div>
+  <div class="approach">
+    <span class="label">音楽的アプローチ</span>
+    <b>ジャズ・ソウル・スタンダードバラード</b>で深く整える。本物の音楽体験で終わる90分。「今日のレッスン、なんか余韻が違う」と思わせて帰ってもらう。
+  </div>
+  <ul class="songs">
+    <li>
+      <div class="song-info">
+        <div class="song-title">What a Wonderful World <span class="genre-tag">ジャズボーカル</span></div>
+        <div class="song-artist">Louis Armstrong</div>
+        <div class="song-meta"><span class="bpm">59</span><span class="year">1967</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Louis+Armstrong+What+a+Wonderful+World+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Lean on Me <span class="genre-tag">ソウル</span></div>
+        <div class="song-artist">Bill Withers</div>
+        <div class="song-meta"><span class="bpm">76</span><span class="year">1972</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Bill+Withers+Lean+on+Me+official" target="_blank">YouTube</a>
+    </li>
+    <li>
+      <div class="song-info">
+        <div class="song-title">Killing Me Softly with His Song <span class="genre-tag">ソウル</span></div>
+        <div class="song-artist">Roberta Flack</div>
+        <div class="song-meta"><span class="bpm">82</span><span class="year">1973</span></div>
+      </div>
+      <a class="yt-link" href="https://www.youtube.com/results?search_query=Roberta+Flack+Killing+Me+Softly+official" target="_blank">YouTube</a>
+    </li>
+  </ul>
+</section>
+
+<footer>
+  <div><a href="index.html" style="color: #6b4e8e; text-decoration: none; font-size: 13px;">← セットリスト集に戻る</a></div>
+  <div style="margin-top: 12px;">VERSION D:オリジナリティ版 / ジャンル顔負けなし</div>
+  <div class="note">
+    BPMは公開データに基づく目安です。<br>
+    YouTubeリンクは検索結果に飛びます(公式MVが最上位表示)。<br>
+    「普通のジムでは聴けない選曲」が一番の差別化ポイント。<br>
+    参加者の音楽体験を更新する、教育的価値もあるセットリスト。
+  </div>
+</footer>
+
+</body>
+</html>

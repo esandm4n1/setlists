@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>90分レッスン セットリスト集</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --sub: #555;
+    --muted: #888;
+    --line: #e0dcd2;
+    --bg: #faf8f3;
+    --card: #ffffff;
+    --accent: #8B2E2E;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    padding: 20px 16px 40px;
+    max-width: 720px;
+    margin: 0 auto;
+    font-size: 15px;
+  }
+  header {
+    text-align: center;
+    padding: 24px 4px 32px;
+    border-bottom: 2px solid var(--accent);
+    margin-bottom: 32px;
+  }
+  h1 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
+  }
+  .sub {
+    color: var(--sub);
+    font-size: 13px;
+  }
+  .intro {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 16px 18px;
+    font-size: 13px;
+    color: var(--sub);
+    margin-bottom: 32px;
+    line-height: 1.75;
+  }
+  .intro strong { color: var(--ink); }
+
+  .cards {
+    display: grid;
+    gap: 16px;
+  }
+  .card {
+    display: block;
+    background: var(--card);
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--line);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .card:hover, .card:active {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  }
+  .card-header {
+    padding: 18px 22px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .card-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    opacity: 0.9;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .card-title {
+    font-size: 22px;
+    font-weight: 700;
+  }
+  .card-arrow {
+    font-size: 24px;
+    opacity: 0.85;
+  }
+  .card-body {
+    padding: 16px 22px 20px;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: var(--sub);
+    margin-bottom: 12px;
+    line-height: 1.7;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .tag {
+    display: inline-block;
+    background: #f0ece3;
+    color: var(--sub);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .tag.hot {
+    background: var(--accent);
+    color: white;
+  }
+
+  /* カードごとの色 */
+  .card-a .card-header { background: linear-gradient(135deg, #8B2E2E, #a04545); }
+  .card-b .card-header { background: linear-gradient(135deg, #2c5f7c, #4a7d99); }
+  .card-c .card-header { background: linear-gradient(135deg, #1a1a1a, #4a4a4a); }
+  .card-d .card-header { background: linear-gradient(135deg, #6b4e8e, #c4593b); }
+
+  footer {
+    margin-top: 40px;
+    padding: 20px 4px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+  }
+
+  @media (max-width: 480px) {
+    body { padding: 16px 12px 32px; }
+    h1 { font-size: 22px; }
+    .card-title { font-size: 19px; }
+    .card-header { padding: 16px 18px; }
+    .card-body { padding: 14px 18px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>90分レッスン セットリスト集</h1>
+  <div class="sub">ステップ → エアロ → ステップ → ズンバ / 4種類のバージョン</div>
+</header>
+
+<div class="intro">
+  <strong>使い方:</strong> その日の客層・雰囲気・気分で4種類のセットリストから選んでください。<br>
+  各バージョンとも8段階構成(ゆっくり → かわいさ → たのしさ → はげしさ① → おちつき → セクシー → はげしさ② → クールダウン)で組まれていて、曲ごとにBPM・年・YouTubeリンク付き。<br>
+  <strong>組み合わせて使うのもアリ</strong>:Aで王道、Cではげしさ①だけロックに差し替え、など。
+</div>
+
+<div class="cards">
+
+  <a class="card card-a" href="setlist_a_classic.html">
+    <div class="card-header">
+      <div>
+        <div class="card-label">VERSION A</div>
+        <div class="card-title">王道版</div>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="card-body">
+      <div class="card-desc">
+        30〜40代に確実に刺さる現代ヒット+00年代懐メロ。「これさえあれば外さない」安定の鉄板版。
+      </div>
+      <div class="tags">
+        <span class="tag hot">鉄板</span>
+        <span class="tag">Bruno Mars</span>
+        <span class="tag">Lady Gaga</span>
+        <span class="tag">Beyoncé</span>
+        <span class="tag">Shakira</span>
+      </div>
+    </div>
+  </a>
+
+  <a class="card card-b" href="setlist_b_latest.html">
+    <div class="card-header">
+      <div>
+        <div class="card-label">VERSION B</div>
+        <div class="card-title">最新曲版</div>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="card-body">
+      <div class="card-desc">
+        2022〜2025のヒット中心。トレンド感重視、若い参加者やTikTok世代も入る現場で。
+      </div>
+      <div class="tags">
+        <span class="tag hot">トレンド</span>
+        <span class="tag">Sabrina Carpenter</span>
+        <span class="tag">Charli XCX</span>
+        <span class="tag">Tate McRae</span>
+        <span class="tag">Doechii</span>
+      </div>
+    </div>
+  </a>
+
+  <a class="card card-c" href="setlist_c_rock.html">
+    <div class="card-header">
+      <div>
+        <div class="card-label">VERSION C</div>
+        <div class="card-title">ロック・ヘヴィ刺し版</div>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="card-body">
+      <div class="card-desc">
+        はげしさ①と②にロック・メタル・パンクを集中投入。「無心で動くトランス感」を作る攻めの構成。リピーター獲得用。
+      </div>
+      <div class="tags">
+        <span class="tag hot">攻め</span>
+        <span class="tag">Linkin Park</span>
+        <span class="tag">Foo Fighters</span>
+        <span class="tag">Rage Against the Machine</span>
+        <span class="tag">Green Day</span>
+      </div>
+    </div>
+  </a>
+
+  <a class="card card-d" href="setlist_d_original.html">
+    <div class="card-header">
+      <div>
+        <div class="card-label">VERSION D</div>
+        <div class="card-title">オリジナリティ版</div>
+      </div>
+      <div class="card-arrow">→</div>
+    </div>
+    <div class="card-body">
+      <div class="card-desc">
+        ジャズ・ソウル・ファンク・70s80sディスコ・レアグルーヴ。普通のエアロでは選ばれない曲で「音楽好きの講師」を演出。
+      </div>
+      <div class="tags">
+        <span class="tag hot">羽根節</span>
+        <span class="tag">Jamiroquai</span>
+        <span class="tag">Earth, Wind & Fire</span>
+        <span class="tag">Stevie Wonder</span>
+        <span class="tag">Daft Punk</span>
+      </div>
+    </div>
+  </a>
+
+</div>
+
+<footer>
+  <div>90分レッスン セットリスト集</div>
+  <div style="margin-top: 6px; font-size: 11px;">全リスト共通:YouTubeリンクは検索結果(公式MV最上位)に飛びます</div>
+</footer>
+
+</body>
+</html>
